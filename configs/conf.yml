@@ -1,0 +1,13 @@
+addr: localhost
+port: :8282
+smsprov: [Topolo, Rond, Kildy]
+vprov: [TransparentCalls, E-Voice, JustPhone]
+eprov: [Gmail, Yahoo, Hotmail, MSN, Orange, Comcast, AOL, Live, RediffMail, GMX, Protonmail, Yandex, Mail.ru]
+pathtoread: ./simulator/
+smsfilename: sms.data
+voicefilename: voice.data
+emailfilename: email.data
+billingfilename: billing.data
+mmsurl: http://127.0.0.1:8383/mms
+supporturl: http://127.0.0.1:8383/support
+incidenturl: http://127.0.0.1:8383/accendent

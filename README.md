@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=500px height=500px src="https://github.com/honyshyota/thesis-project/blob/master/images/main.jpeg" alt="Project logo"></a>
+</p>
+
+
 # Project Title
 
 ## Table of Contents

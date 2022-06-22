@@ -80,11 +80,9 @@ func (h *handler) handleConnection(w http.ResponseWriter, r *http.Request) {
 		h.cache.DataSet(result)
 
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("repo:\n"))
 		w.Write(result)
 	} else {
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("cache:\n"))
 		w.Write(cache)
 	}
 }

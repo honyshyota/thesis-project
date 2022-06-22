@@ -4,49 +4,41 @@
 </p>
 
 
-# Project Title
+# HTTP-service
 
-## Table of Contents
+## Task Description
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Usage](#usage)
-- [Contributing](../CONTRIBUTING.md)
+Компания предоставляет инструменты и API для автоматизации работы систем
+SMS, MMS, Голосовых звонков и Email. География клиентов распространяется на
+160 стран и компания быстро растёт. Требуется всё больше ресурсов со стороны
+службы поддержки и было принято решение снизить количество заявок с помощью
+создания страниц информирования клиентов о текущем состоянии систем.
+С помощью этих страниц компания планирует снизить количество однотипных
+вопросов и высвободить время агентов службы поддержки для решения более
+сложных задач.
+          
+          В числе прочего были составлены страницы с ответами на часто
+          задаваемые вопросы, уведомления о неполадках и истории
+          инцидентов, чтобы клиенты могли самостоятельно проверять
+          действующие системы на работоспособность. Поскольку компания
+          работает на широкую аудиторию и распространена по всему миру,
+          практически невозможно уследить за всеми изменениями вручную. 
 
-## About <a name = "about"></a>
+Поэтому каждое подразделение компании самостоятельно контролирует работу
+поставщиков услуг в автоматизированном режиме храня эти данные. Ваша задача —
+финализировать проект, объединив эти данные и разработав небольшой сетевой
+сервис, который будет принимать запросы по сети и возвращать данные
+о состоянии систем компании. Эти данные будут выводиться на web страницу
+сайта компании под названием и содержать в себе географию и статусы
+сервисов. Так клиенты смогут проверить свой регион на наличие ошибок прежде
+чем обращаться в службу поддержки.
+## How to
 
-Write about 1-2 paragraphs describing the purpose of your project.
+* Для запуска API ```make api```
+* Для запуска симулятора ```make```
 
-## Getting Started <a name = "getting_started"></a>
+## Look here
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-## Usage <a name = "usage"></a>
-
-Add notes about how to use the system.
+![alt text](https://github.com/honyshyota/thesis-project/blob/master/images/api.png)
+![alt text](https://github.com/honyshyota/thesis-project/blob/master/images/simulator.png)
+![alt text](https://github.com/honyshyota/thesis-project/blob/master/images/json.png)

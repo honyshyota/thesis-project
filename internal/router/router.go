@@ -78,10 +78,11 @@ func (h *handler) handleConnection(w http.ResponseWriter, r *http.Request) {
 	if cache == nil {
 		result := check.New(h.cfg).CheckResult()
 		h.cache.DataSet(result)
-
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.WriteHeader(http.StatusOK)
 		w.Write(result)
 	} else {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.WriteHeader(http.StatusOK)
 		w.Write(cache)
 	}

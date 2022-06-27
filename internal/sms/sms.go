@@ -73,7 +73,7 @@ func (sr SMSReport) Make() ([]*SMSData, []*SMSData) {
 		}
 
 		var result = &SMSData{
-			Country:      splitSlice[0],
+			Country:      countryName,
 			Bandwidth:    splitSlice[1],
 			ResponseTime: splitSlice[2],
 			Provider:     splitSlice[3],

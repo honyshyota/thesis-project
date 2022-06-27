@@ -37,6 +37,7 @@ func (vr VoiceReport) Make() []*VoiceCallData {
 	voiceCollection, err := ioutil.ReadFile(vr.sourcePath)
 	if err != nil {
 		log.Fatalln("Failed to read data from file, ", err)
+		return nil
 	}
 	voiceStringSlice := strings.Fields(string(voiceCollection))
 	var voiceStringResult string

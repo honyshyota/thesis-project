@@ -35,6 +35,7 @@ func (er EmailReport) Make() map[string][][]*EmailData {
 	emailCollection, err := ioutil.ReadFile(er.sourcePath)
 	if err != nil {
 		log.Println("Failed reading data from file. ", err)
+		return nil
 	}
 
 	emailStringSlice := strings.Fields(string(emailCollection))

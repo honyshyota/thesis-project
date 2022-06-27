@@ -11,7 +11,7 @@ import (
 )
 
 type MMSData struct {
-	Country      string `json:""`
+	Country      string `json:"country"`
 	Provider     string `json:"provider"`
 	Bandwidth    string `json:"bandwidth"`
 	ResponseTime string `json:"response_time"`
@@ -35,21 +35,25 @@ func (mr MMSReport) Make() ([]*MMSData, []*MMSData) {
 	resp, err := http.Get(mr.sourceURL)
 	if err != nil {
 		log.Println(err)
+		return nil, nil
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		log.Printf("Incorrect status code, %v", resp.StatusCode)
+		return nil, nil
 	}
 
 	resultJSON, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Println(err)
+		return nil, nil
 	}
 
 	err = json.Unmarshal(resultJSON, &sortByCountry)
 	if err != nil {
 		log.Printf("Failed to unmarshling JSON from body: %s", err)
+		return nil, nil
 	}
 
 	sortByProvider := sortByCountry

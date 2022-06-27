@@ -39,11 +39,13 @@ func (br BillingReport) Make() *BillingData {
 	billingCollection, err := ioutil.ReadFile(br.sourcePath)
 	if err != nil {
 		log.Println(err)
+		return nil
 	}
 
 	mask, err := strconv.ParseInt(string(billingCollection), 2, 0)
 	if err != nil {
 		log.Println(err)
+		return nil
 	}
 
 	result := &BillingData{

@@ -29,21 +29,25 @@ func (ir IncidentReport) Make() []*IncidentData {
 	resp, err := http.Get(ir.sourceURL)
 	if err != nil {
 		log.Println(err)
+		return nil
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		log.Printf("Incorrect status code, %v", resp.StatusCode)
+		return nil
 	}
 
 	resultJSON, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Println(err)
+		return nil
 	}
 
 	err = json.Unmarshal(resultJSON, &resultIncedent)
 	if err != nil {
 		log.Println(err)
+		return nil
 	}
 
 	sort.Slice(resultIncedent, func(i, j int) bool {

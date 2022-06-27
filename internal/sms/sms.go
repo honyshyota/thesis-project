@@ -34,6 +34,7 @@ func (sr SMSReport) Make() ([]*SMSData, []*SMSData) {
 	smsCollection, err := ioutil.ReadFile(sr.sourcePath)
 	if err != nil {
 		log.Println("Failed reading sms.data", err)
+		return nil, nil
 	}
 
 	smsStringSlice := strings.Fields(string(smsCollection))

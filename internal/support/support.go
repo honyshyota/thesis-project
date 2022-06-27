@@ -29,6 +29,7 @@ func (supr SupportReport) Make() []int {
 	resp, err := http.Get(supr.sourceURL)
 	if err != nil {
 		log.Println(err)
+		return nil
 	}
 	defer resp.Body.Close()
 
@@ -39,6 +40,7 @@ func (supr SupportReport) Make() []int {
 	jsnUnmrshl, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		log.Println(err)
+		return nil
 	}
 
 	dec := json.NewDecoder(strings.NewReader(string(jsnUnmrshl)))
@@ -46,8 +48,10 @@ func (supr SupportReport) Make() []int {
 	err = dec.Decode(&resultSupport)
 	if err == io.EOF {
 		log.Println(err)
+		return nil
 	} else if err != nil {
 		log.Println(err)
+		return nil
 	}
 
 	sumTickets := 0

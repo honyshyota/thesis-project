@@ -1,7 +1,6 @@
 package email
 
 import (
-	"fmt"
 	"io/ioutil"
 	"main/internal/additional"
 	"sort"

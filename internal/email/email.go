@@ -1,6 +1,7 @@
 package email
 
 import (
+	"fmt"
 	"io/ioutil"
 	"main/internal/additional"
 	"sort"
@@ -94,13 +95,16 @@ func (er EmailReport) Make() map[string][][]*EmailData {
 	dataEmail = append(dataEmail, resultHighSpeed, resultLowSpeed)
 	resultSortedEmail := make(map[string][][]*EmailData)
 	for i := range resultHighSpeed {
-		resultSortedEmail[resultHighSpeed[i].Country] = nil
+		country, _ := additional.CountryCheck(resultHighSpeed[i].Country)
+		resultSortedEmail[country] = nil
 	}
+
 	var con []*EmailData
 	for i := range resultSortedEmail {
 		for a, data := range dataEmail {
 			for _, y := range data {
-				if y.Country == i {
+				yCountry, _ := additional.CountryCheck(y.Country)
+				if yCountry == i {
 					if a == 0 {
 						con = append(con, y)
 						if len(con) > 2 {

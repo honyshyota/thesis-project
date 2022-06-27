@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	configuration "main/configs"
 	resultSet "main/internal/result_set"
-
-	log "github.com/sirupsen/logrus"
 )
 
 // CheckResult use result_set.go and check data on error and conversion in json return into handler from router.go
@@ -25,7 +23,7 @@ func New(cfg *configuration.Configuration) *ConvertJson {
 	}
 }
 
-func (cj *ConvertJson) CheckResult() []byte {
+func (cj *ConvertJson) CheckResult() ([]byte, error) {
 	var result *ResultT
 	r := resultSet.New(cj.cfg).GetResultData()
 
@@ -39,10 +37,10 @@ func (cj *ConvertJson) CheckResult() []byte {
 
 		jsonResult, err := json.MarshalIndent(result, "", "  ")
 		if err != nil {
-			log.Println(err)
+			return nil, err
 		}
 
-		return jsonResult
+		return jsonResult, nil
 	} else {
 		result = &ResultT{
 			Status: true,
@@ -51,10 +49,10 @@ func (cj *ConvertJson) CheckResult() []byte {
 
 		jsonResult, err := json.MarshalIndent(result, "", "  ")
 		if err != nil {
-			log.Println(err)
+			return nil, err
 		}
 
-		return jsonResult
+		return jsonResult, nil
 	}
 
 }

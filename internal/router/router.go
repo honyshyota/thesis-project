@@ -41,6 +41,7 @@ func Router(cfg *configuration.Configuration) {
 	http.Handle("/", router)
 
 	go func() {
+		log.Println("Server is running...")
 		if err := srv.ListenAndServe(); err != nil {
 			log.Println(err)
 		}
@@ -76,7 +77,11 @@ func (h *handler) handleConnection(w http.ResponseWriter, r *http.Request) {
 	// Check json data in cache
 	cache := h.cache.Get()
 	if cache == nil {
-		result := check.New(h.cfg).CheckResult()
+		result, err := check.New(h.cfg).CheckResult()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("Cannot marshlling to json"))
+		}
 		h.cache.DataSet(result)
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.WriteHeader(http.StatusOK)

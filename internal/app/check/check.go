@@ -3,7 +3,7 @@ package check
 import (
 	"encoding/json"
 	configuration "main/configs"
-	resultSet "main/internal/result_set"
+	resultSet "main/internal/app/resultSet"
 )
 
 // CheckResult use result_set.go and check data on error and conversion in json return into handler from router.go

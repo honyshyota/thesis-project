@@ -3,13 +3,13 @@ package resultSet
 import (
 	configuration "main/configs"
 	"main/internal/additional"
-	"main/internal/billing"
-	"main/internal/email"
-	"main/internal/incident"
-	"main/internal/mms"
-	"main/internal/sms"
-	"main/internal/support"
-	"main/internal/voice"
+	"main/internal/additional/billing"
+	"main/internal/additional/email"
+	"main/internal/additional/incident"
+	"main/internal/additional/mms"
+	"main/internal/additional/sms"
+	"main/internal/additional/support"
+	"main/internal/additional/voice"
 	"sync"
 )
 

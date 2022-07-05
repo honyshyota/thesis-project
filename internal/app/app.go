@@ -2,7 +2,7 @@ package app
 
 import (
 	configuration "main/configs"
-	"main/internal/router"
+	"main/internal/app/router"
 )
 
 func Run() {

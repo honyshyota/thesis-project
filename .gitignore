@@ -1,6 +1,7 @@
 api
 sim
-simulator/billing.data
-simulator/email.data
-simulator/sms.data
-simulator/voice.data
+billing.data
+email.data
+sms.data
+voice.data
+/.vscode

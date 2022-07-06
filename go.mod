@@ -17,6 +17,7 @@ require (
 
 require (
 	github.com/go-chi/chi v1.5.4
+	github.com/joho/godotenv v1.4.0
 	github.com/pariz/gountries v0.1.5
 	gopkg.in/yaml.v2 v2.4.0
 )

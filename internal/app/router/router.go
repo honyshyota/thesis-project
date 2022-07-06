@@ -3,7 +3,6 @@ package router
 import (
 	"context"
 	"flag"
-	configuration "main/configs"
 	"main/internal/app/cache"
 	"main/internal/app/check"
 	"net/http"
@@ -18,7 +17,7 @@ import (
 )
 
 // Router with gracefull shutdown
-func Router(cfg *configuration.Configuration) {
+func Router() {
 	var wait time.Duration
 	flag.DurationVar(&wait, "graceful-timeout", time.Second*15, "duration time 15s")
 	flag.Parse()
@@ -27,8 +26,9 @@ func Router(cfg *configuration.Configuration) {
 	router.Use(middleware.RequestID)
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
+
 	srv := &http.Server{
-		Addr:         cfg.Addr + cfg.Port,
+		Addr:         os.Getenv("ADDR") + os.Getenv("PORT"),
 		WriteTimeout: time.Second * 15,
 		ReadTimeout:  time.Second * 15,
 		IdleTimeout:  time.Second * 60,
@@ -36,7 +36,7 @@ func Router(cfg *configuration.Configuration) {
 
 	// Cache initialized
 	cache := cache.NewCache()
-	handlerRepo := newHandler(cache, cfg)
+	handlerRepo := newHandler(cache)
 	router.HandleFunc("/", handlerRepo.handleConnection)
 	http.Handle("/", router)
 
@@ -63,13 +63,11 @@ func Router(cfg *configuration.Configuration) {
 
 type handler struct {
 	cache *cache.Cache
-	cfg   *configuration.Configuration
 }
 
-func newHandler(cache *cache.Cache, cfg *configuration.Configuration) *handler {
+func newHandler(cache *cache.Cache) *handler {
 	return &handler{
 		cache: cache,
-		cfg:   cfg,
 	}
 }
 
@@ -77,7 +75,7 @@ func (h *handler) handleConnection(w http.ResponseWriter, r *http.Request) {
 	// Check json data in cache
 	cache := h.cache.Get()
 	if cache == nil {
-		result, err := check.New(h.cfg).CheckResult()
+		result, err := check.New().CheckResult()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("Cannot marshlling to json"))

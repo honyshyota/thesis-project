@@ -2,7 +2,6 @@ package check
 
 import (
 	"encoding/json"
-	configuration "main/configs"
 	resultSet "main/internal/app/resultSet"
 )
 
@@ -13,19 +12,15 @@ type ResultT struct {
 	Error  string                `json:"error"`
 }
 
-type ConvertJson struct {
-	cfg *configuration.Configuration
-}
+type ConvertJson struct{}
 
-func New(cfg *configuration.Configuration) *ConvertJson {
-	return &ConvertJson{
-		cfg: cfg,
-	}
+func New() *ConvertJson {
+	return &ConvertJson{}
 }
 
 func (cj *ConvertJson) CheckResult() ([]byte, error) {
 	var result *ResultT
-	r := resultSet.New(cj.cfg).GetResultData()
+	r := resultSet.New().GetResultData()
 
 	if len(r.SMS[0]) == 0 || len(r.MMS[0]) == 0 || len(r.VoiceCall) == 0 ||
 		len(r.Email) == 0 || r.Support[1] == 0 || len(r.Incidents) == 0 {

@@ -2,7 +2,7 @@ package additional
 
 import (
 	"errors"
-	configuration "main/configs"
+	"os"
 	"strconv"
 	"strings"
 
@@ -13,7 +13,7 @@ import (
 
 // This functions build strings path for sms, email, voice, billing methods
 func GetFilePathByFileName(filename string) string {
-	return configuration.CheckCfg().PathToRead + filename
+	return os.Getenv("PATH_TO_READ") + filename
 }
 
 // This functions for check or conversion values for sms, mms, voice and other

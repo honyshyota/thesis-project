@@ -3,6 +3,7 @@ package router
 import (
 	"context"
 	"flag"
+	"fmt"
 	"main/internal/app/cache"
 	"main/internal/app/check"
 	"net/http"
@@ -85,6 +86,7 @@ func (h *handler) handleConnection(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write(result)
 	} else {
+		fmt.Println(cache)
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.WriteHeader(http.StatusOK)
 		w.Write(cache)

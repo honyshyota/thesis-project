@@ -16,6 +16,10 @@ func GetFilePathByFileName(filename string) string {
 	return os.Getenv("PATH_TO_READ") + filename
 }
 
+func GetFilePathByFileNameTest(filename string) string {
+	return os.Getenv("PATH_TEST") + filename
+}
+
 // This functions for check or conversion values for sms, mms, voice and other
 func VoiceParametersCheckAndConv(connStab, TTFB, voicePurity, medianOfCallsTime string) (float32, int, int, int, error) {
 	var connFloat float64
